@@ -3,7 +3,7 @@ import csv
 DIAL_POINTS = []
 
 def read_csv():
-    with open("input.csv", "r", encoding="utf-8") as f:
+    with open("test.csv", "r", encoding="utf-8") as f:
         DIRECTIONS = [line.strip() for line in f]
     return DIRECTIONS
 
