@@ -4,7 +4,7 @@ BATTERIES = []
 JOLTAGES = []
 
 def read_csv():
-    with open("test.csv", "r", encoding="utf-8") as f:
+    with open("input.csv", "r", encoding="utf-8") as f:
         BATTERIES = [line.strip() for line in f]
     return BATTERIES
 
@@ -13,8 +13,9 @@ def search_max_item(batteries):
     print(f"batteries", batteries)   
     for index in range(len(batteries)):
         battery = batteries[index]
-        max_item = get_max_item_top_n(battery, 2, {})      
-        JOLTAGES.append(ordering(max_item))        
+        #max_item = get_max_item_top_n(battery, 12, {})
+        max_item = get_largest_number(battery, 12)     
+        JOLTAGES.append(int(max_item))    
     
 def ordering(map):
     sorted_map = dict(sorted(map.items(), key=lambda item: item[0]))
@@ -24,7 +25,28 @@ def ordering(map):
 
     return int(all_keys)
 
+def get_largest_number(string, limit):
+    digits = list(string)
+    result = []
+    size = len(digits)
+    
+    for digit in digits:
+        for _ in range(len(result)):
+            if not result:
+                break
+            if int(result[-1]) < int(digit) and len(result) - 1 + size >= limit:
+                result.pop()
+            else:
+                break
 
+        if len(result) < limit:
+            result.append(digit)
+
+        size -= 1
+    
+    return ''.join(result)
+    
+    
 def get_max_item_top_n(string, limit, result, start=0, iteration=0):
     if(limit == iteration):
         return result
@@ -107,5 +129,8 @@ search_max_item(batteries)
 print(f"JOLTAGES={JOLTAGES}")
 print(f"password is {sum(JOLTAGES)}")
 
+#extra task: 172167155440541
+
 # addition=134216 #That's not the right answer; your answer is too high.
+
 
