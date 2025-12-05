@@ -95,7 +95,7 @@ def draw(dict, rows, cols):
         print(row)
 
 def welcome():
-    print("Welcom on 3. day!")
+    print("Welcom on 4. day!")
 
 ### MAIN ###
 welcome()
